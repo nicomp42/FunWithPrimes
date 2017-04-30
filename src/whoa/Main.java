@@ -2,8 +2,6 @@
  * Bill Nichlson
  * nicholdw@ucmail.uc.edu
  * Some test primes: https://primes.utm.edu/lists/small/small.html
- * Comment added from laptop
- * Another comment added from laptop
  */
 package whoa;
 
