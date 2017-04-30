@@ -124,21 +124,27 @@ public class Main {
 			System.out.println("******************* number is divisible by 2 *********************");
 		} else {
 			while (true) {
-				mod = num.mod(divisor);
-				if (mod.compareTo(BigInteger.ZERO) == 0) {
-					System.out.println("******************* Divisor found *********************");
-					break;
+				int lastDigit;
+				lastDigit = divisor.intValue();
+				lastDigit = lastDigit % 10;	// Get the lowest digit
+				// We only need to check odd numbers that don't end in 5
+				if (lastDigit == 1 || lastDigit == 3 || lastDigit == 7 || lastDigit == 9) {
+					mod = num.mod(divisor);
+					if (mod.compareTo(BigInteger.ZERO) == 0) {
+						System.out.println("******************* Divisor found *********************");
+						break;
+					}
+					//System.out.println("i = " + i + " mod = " + mod.toString());
+					if (counter % 100_000_000 == 0) {
+						t2 = System.currentTimeMillis();
+						System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
+						//System.out.println(divisor.toString());
+						System.out.println(" Divisor has " + divisor.toString().length() + " digits.");
+						counter = 0;
+						t1 = t2;
+					}
+					counter++;
 				}
-				//System.out.println("i = " + i + " mod = " + mod.toString());
-				if (counter % 100_000_000 == 0) {
-					t2 = System.currentTimeMillis();
-					System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
-					//System.out.println(divisor.toString());
-					System.out.println(" Divisor has " + divisor.toString().length() + " digits.");
-					counter = 0;
-					t1 = t2;
-				}
-				counter++;
 				divisor = divisor.add(bigIntegerTwo);	// Only check the odd numbers
 				// Are we done?
 				if (divisor.compareTo(myLKP.getMyNum_SquareRoot()) > 0) {System.out.println("No divisor found, number is prime"); break;}
