@@ -26,12 +26,12 @@ public class Config {
 	}
 	
 	/**
-	 * Adjust a file path so it contains the data folder
+	 * Adjust a file path so it contains the data folder. Only use this with built-in Java classes such as FileOutputStream.
+	 * Do not use this with our methods.  
 	 * @param fileName The file name, no path
 	 * @return The file name with the data folder added to it
 	 */
 	public static String addPathToDataFileName(String fileName) {
 		return dataFolder + "\\" + fileName;
 	}
-	
 }

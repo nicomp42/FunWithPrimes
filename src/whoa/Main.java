@@ -9,6 +9,8 @@ import java.io.File;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 
+import config.Config;
+
 public class Main {
 
 //	private static String testFileName = "M74207281";

@@ -22,6 +22,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
+
+import config.Config;
 /**
  * LKP = Largest Known Prime
  * @author nicomp
@@ -49,7 +51,7 @@ public class LKP {
 	 */
 	public void readSerializedBigIntegerFromDiskFile() throws Exception {
 		try {
-			InputStream fos = new FileInputStream(numberFileName + ".ser");
+			InputStream fos = new FileInputStream(Config.addPathToDataFileName(numberFileName + ".ser"));
 			ObjectInputStream inputStream = new ObjectInputStream(fos);
 			myNum = (BigInteger) inputStream.readObject();
 			fos.close();
@@ -65,7 +67,7 @@ public class LKP {
 	 */
 	public void readSerializedSquareRootFromDiskFile() throws Exception {
 		try {
-			InputStream fos = new FileInputStream(numberFileName + squareRootSuffix  + ".ser");
+			InputStream fos = new FileInputStream(Config.addPathToDataFileName(numberFileName + squareRootSuffix  + ".ser"));
 			ObjectInputStream inputStream = new ObjectInputStream(fos);
 			myNum_SquareRoot = (BigInteger) inputStream.readObject();
 			fos.close();
@@ -81,7 +83,7 @@ public class LKP {
 	 */
 	private void serializeBigIntegerToDiskFile(String fileName) throws Exception {
 		try {
-		OutputStream fos = new FileOutputStream(fileName + ".ser");
+		OutputStream fos = new FileOutputStream(Config.addPathToDataFileName(fileName + ".ser"));
 		ObjectOutputStream outputStream = new ObjectOutputStream(fos);
 		outputStream.writeObject(myNum);
 		fos.close();
@@ -90,8 +92,6 @@ public class LKP {
 			throw ex;
 		}
 	}
-
-
 	/**
 	 * Write the BigInteger object to a file
 	 * @throws Exception
@@ -116,7 +116,6 @@ public class LKP {
 			throw ex;
 		}
 	}
-
 	/**
 	 * Loading the number from a text file is almost instantaneous.
 	 * Converting to a BigInteger takes about 3 hours.
@@ -126,7 +125,7 @@ public class LKP {
 		long startTime = System.currentTimeMillis();
 		StringBuilder buff = new StringBuilder("");
 		try {
-			FileReader fr = new FileReader(fileName);
+			FileReader fr = new FileReader(Config.addPathToDataFileName(fileName));
 			BufferedReader br = new BufferedReader(fr);
 			try {
 				System.out.println("Reading from file " + fileName + "...");
@@ -201,6 +200,4 @@ public class LKP {
 	public void setMyNum_SquareRoot(BigInteger myNum_SquareRoot) {
 		this.myNum_SquareRoot = myNum_SquareRoot;
 	}
-
-
 }
