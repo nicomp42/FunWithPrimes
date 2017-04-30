@@ -51,7 +51,7 @@ public class Main {
 		System.out.println("Total execution time to check length of serialized BigInteger that we just read: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 
 		// If the square root does not exist in a serialized file, create it now.
-		File f = new File(testFileName + myLKP.squareRootSuffix + ".ser");
+		File f = new File(Config.addPathToDataFileName(testFileName + myLKP.squareRootSuffix + ".ser"));
 		if(!f.exists()) {
 			System.out.println("The file '" + testFileName + myLKP.squareRootSuffix + ".ser' does not exist. We will create it!");
 			System.out.println("Computing and serializing square root of the BigInteger...");
@@ -110,7 +110,7 @@ public class Main {
 */
 		// Run a brief test to see how long a few iterations of prime-ness testing would take
 		BigInteger mod;
-		BigInteger divisor = new BigInteger("2");
+		BigInteger divisor = new BigInteger("3");	//  We will only check odd numbers
 		System.out.println("Starting test loop...");
 //		int testIterations = 10000000;
 		startTime = System.currentTimeMillis();
@@ -118,24 +118,33 @@ public class Main {
 		t1 = System.currentTimeMillis();
 		int counter = 0;
 //		for (int i = 2; i < testIterations; i++) {
-		while (true) {
-			mod = myLKP.getNum().mod(divisor);
-			if (mod.compareTo(BigInteger.ZERO) == 0) {
-				System.out.println("******************* Divisor found *********************");
-				break;
+		BigInteger bigIntegerTwo = new BigInteger("2");
+		BigInteger num = myLKP.getNum();		// Create a local copy of the reference.
+		if (num.mod(bigIntegerTwo).compareTo(BigInteger.ZERO) == 0) {
+			System.out.println("******************* number is divisible by 2 *********************");
+		} else {
+			while (true) {
+				mod = num.mod(divisor);
+				if (mod.compareTo(BigInteger.ZERO) == 0) {
+					System.out.println("******************* Divisor found *********************");
+					break;
+				}
+				//System.out.println("i = " + i + " mod = " + mod.toString());
+				if (counter % 100_000_000 == 0) {
+					t2 = System.currentTimeMillis();
+					System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
+					//System.out.println(divisor.toString());
+					System.out.println(" Divisor has " + divisor.toString().length() + " digits.");
+					counter = 0;
+					t1 = t2;
+				}
+				counter++;
+				divisor = divisor.add(bigIntegerTwo);	// Only check the odd numbers
+				// Are we done?
+				if (divisor.compareTo(myLKP.getMyNum_SquareRoot()) > 0) {System.out.println("No divisor found, number is prime"); break;}
 			}
-			//System.out.println("i = " + i + " mod = " + mod.toString());
-			if (counter % 10000 == 0) {
-				t2 = System.currentTimeMillis();
-				//System.out.println(new DecimalFormat("#,###.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
-				counter = 0;
-				t1 = t2;
-			}
-			divisor = divisor.add(BigInteger.ONE);
-			// Are we done?
-			if (divisor.compareTo(myLKP.getMyNum_SquareRoot()) > 0) {System.out.println("No divisor found, number is prime"); break;}
+			endTime = System.currentTimeMillis();
+			System.out.println("Total execution time to run the test loop: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 		}
-		endTime = System.currentTimeMillis();
-		System.out.println("Total execution time to run the test loop: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 	}
 }
