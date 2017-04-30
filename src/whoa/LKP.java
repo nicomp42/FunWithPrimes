@@ -153,12 +153,12 @@ public class LKP {
 
 			} catch (Exception ex) {
 
+			} finally {
+				try {br.close();} catch (Exception ex) {}	// OK to eat this exception
 			}
 		} catch(Exception ex) {
 			System.out.println(ex.getLocalizedMessage());
 		}
-
-
 	}
 	/**
 	 * Polymorphic.
