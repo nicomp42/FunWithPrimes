@@ -22,7 +22,11 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
-
+/**
+ * LKP = Largest Known Prime
+ * @author nicomp
+ *
+ */
 public class LKP {
 	private BigInteger myNum;
 	private BigInteger myNum_SquareRoot;
