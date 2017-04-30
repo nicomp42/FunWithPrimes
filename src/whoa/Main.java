@@ -127,8 +127,8 @@ public class Main {
 				int lastDigit;
 				lastDigit = divisor.intValue();
 				lastDigit = lastDigit % 10;	// Get the lowest digit
-				// We only need to check odd numbers that don't end in 5
-				if (lastDigit == 1 || lastDigit == 3 || lastDigit == 7 || lastDigit == 9) {
+				// All we have are odd numbers and we only need to check odd numbers that don't end in 5
+				if (lastDigit != 5) {
 					mod = num.mod(divisor);
 					if (mod.compareTo(BigInteger.ZERO) == 0) {
 						System.out.println("******************* Divisor found *********************");
@@ -139,7 +139,8 @@ public class Main {
 						t2 = System.currentTimeMillis();
 						System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
 						//System.out.println(divisor.toString());
-						System.out.println(" Divisor has " + divisor.toString().length() + " digits.");
+						System.out.print(" Divisor has " + divisor.toString().length() + " digits.");
+						System.out.println(new DecimalFormat(" Elapsed time = #,#######.0").format(((double)((t2 - startTime))/1000)/60) + " minutes.");
 						counter = 0;
 						t1 = t2;
 					}
