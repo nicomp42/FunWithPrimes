@@ -35,13 +35,13 @@ public class Main {
 				startTime = System.currentTimeMillis();
 				myLKP.serializeTargetBigIntegerToDiskFile();
 				endTime = System.currentTimeMillis();
-				System.out.println("Total execution time to serialize BigInteger: " + ((double)((endTime - startTime))/1000)/60 + " minutes." );
+				System.out.println("Total execution time to serialize BigInteger: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 		endTime = System.currentTimeMillis();
-		System.out.println("Total execution time to read serialized BigInteger: " + ((double)((endTime - startTime))/1000)/60 + " minutes." );
+		System.out.println("Total execution time to read serialized BigInteger: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 		System.out.println("Checking length of the BigInteger we just read...");
 		startTime = System.currentTimeMillis();
 		System.out.println("Length of number = " + new DecimalFormat("#,###").format(myLKP.getLengthOfNum()));
@@ -49,8 +49,9 @@ public class Main {
 		System.out.println("Total execution time to check length of serialized BigInteger that we just read: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 
 		// If the square root does not exist in a serialized file, create it now.
-		File f = new File(testFileName + myLKP.squareRootSuffix + ".txt");
+		File f = new File(testFileName + myLKP.squareRootSuffix + ".ser");
 		if(!f.exists()) {
+			System.out.println("The file '" + testFileName + myLKP.squareRootSuffix + ".ser' does not exist. We will create it!");
 			System.out.println("Computing and serializing square root of the BigInteger...");
 			startTime = System.currentTimeMillis();
 			BigInteger squareRoot = myLKP.sqrt();
@@ -64,6 +65,7 @@ public class Main {
 				System.out.println(ex.getLocalizedMessage());
 			}
 		} else {
+			System.out.println("The file '" + testFileName + myLKP.squareRootSuffix + ".ser' DOES exist.");
 			System.out.println("Reading serialized square root of the BigInteger...");
 			startTime = System.currentTimeMillis();
 			try {
@@ -133,6 +135,5 @@ public class Main {
 		}
 		endTime = System.currentTimeMillis();
 		System.out.println("Total execution time to run the test loop: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
-
 	}
 }
