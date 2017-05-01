@@ -83,7 +83,7 @@ public class LKP {
 	 */
 	private void serializeBigIntegerToDiskFile(String fileName) throws Exception {
 		try {
-		OutputStream fos = new FileOutputStream(Config.addPathToDataFileName(fileName + ".ser"));
+		OutputStream fos = new FileOutputStream(Config.addPathToDataFileName(fileName + squareRootSuffix +  ".ser"));
 		ObjectOutputStream outputStream = new ObjectOutputStream(fos);
 		outputStream.writeObject(myNum);
 		fos.close();
@@ -110,7 +110,7 @@ public class LKP {
 	 */
 	public void serializeTargetBigIntegerSquareRootToDiskFile() throws Exception {
 		try {
-		OutputStream fos = new FileOutputStream(Config.addPathToDataFileName(numberFileName + squareRootSuffix));
+		OutputStream fos = new FileOutputStream(Config.addPathToDataFileName(numberFileName + squareRootSuffix + ".ser"));
 		ObjectOutputStream outputStream = new ObjectOutputStream(fos);
 		outputStream.writeObject(myNum_SquareRoot);
 		fos.close();
