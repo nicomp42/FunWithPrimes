@@ -154,12 +154,12 @@ public class Main {
 				boolean checkThisDivisor = true;
 				while (true) {
 					if (checkThisDivisor == true) {
-						System.out.println(divisor.toString());
+						//System.out.println(divisor.toString());
 						mod = num.mod(divisor);
 						if (mod.compareTo(BigInteger.ZERO) == 0) {System.out.println("******************* Divisor found *********************"); System.out.println(divisor.toString()); break;}
 						//System.out.println("i = " + i + " mod = " + mod.toString());
 
-						if (counter % 100_000_000 == 0) {
+						if (counter % 1_000_000 == 0) {
 							t2 = System.currentTimeMillis();
 							System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
 							//System.out.println(divisor.toString());
