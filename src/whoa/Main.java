@@ -131,7 +131,7 @@ public class Main {
 			} else if (num.mod(new BigInteger("07")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 7 *********************");
 			} else if (num.mod(new BigInteger("11")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 11 *********************");
 			} else if (num.mod(new BigInteger("13")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 13 *********************");
-			} else if (num.mod(new BigInteger("17")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 7 *********************");
+			} else if (num.mod(new BigInteger("17")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 17 *********************");
 			} else if (num.mod(new BigInteger("19")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 19 *********************");
 			} else if (num.mod(new BigInteger("23")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 23 *********************");
 			} else if (num.mod(new BigInteger("29")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 29 *********************");
