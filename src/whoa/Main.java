@@ -108,39 +108,27 @@ public class Main {
 		System.out.println("Total execution time to compare: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 		System.out.println("Result of comparison = " + comparison);
 */
-		// Run a brief test to see how long a few iterations of prime-ness testing would take
 		BigInteger mod;
 		int startingPrime = 61;		// Where the divisor will start. 
 		BigInteger divisor = new BigInteger(String.valueOf(startingPrime));
 		// 7,11,13,17,19,23,29,31,37,41,43,47,53,59,61
-		int counter7 = startingPrime; int counter11 = startingPrime; int counter13 = startingPrime; int counter17 = startingPrime; int counter19 = startingPrime; 
-		int counter23 = startingPrime; int counter29 = startingPrime; int counter31 = startingPrime; 
-		int counter37 = startingPrime; int counter41 = startingPrime; int counter43 = startingPrime; int counter47 = startingPrime;
-		int counter53 = startingPrime; int counter59 = startingPrime;
+		int counter03 = startingPrime; int counter05 = startingPrime; int counter07 = startingPrime; int counter11 = startingPrime; int counter13 = startingPrime; int counter17 = startingPrime; 
+		int counter19 = startingPrime; int counter23 = startingPrime; int counter29 = startingPrime; int counter31 = startingPrime; int counter37 = startingPrime; int counter41 = startingPrime; 
+		int counter43 = startingPrime; int counter47 = startingPrime; int counter53 = startingPrime; int counter59 = startingPrime;
 		System.out.println("Starting test loop...");
-//		int testIterations = 10000000;
 		startTime = System.currentTimeMillis();
 		long t1, t2;
 		t1 = System.currentTimeMillis();
 		int counter = 0;
-//		for (int i = 2; i < testIterations; i++) {
 		BigInteger bigIntegerTwo = new BigInteger("2");
-		BigInteger num = myLKP.getNum();		// Create a local copy of the reference.
+		BigInteger num = myLKP.getNum();		// Create a local copy of the reference to the number we are checking for primeness.
+		BigInteger num_SquareRoot = myLKP.getMyNum_SquareRoot();	// Create a local copy of the reference to the square root
 		int lastDigit;
-		if (num.mod(bigIntegerTwo).compareTo(BigInteger.ZERO) == 0) {
-			System.out.println("******************* number is divisible by 2 *********************");
-		} else {
-			int sumOfDigits;
-			sumOfDigits = 0;
-			// Is the number divisible by 3? Sum the digits.
-			byte tmp[] = num.toByteArray();
-			for (int i = 0; i < tmp.length; i++) {
-				sumOfDigits += tmp[i] - 48;
-			}
-			if (sumOfDigits % 3 == 0) {
-				// Number is divisible by 3. It can't be prime
-				System.out.println("******************* number is divisible by 3 *********************");
-			} else if (num.mod(new BigInteger("7")).compareTo(BigInteger.ZERO) == 0) {  System.out.println("******************* number is divisible by 7 *********************");
+		// Check the first few primes. Make sure this stops at the last prime before the value of startingPrime
+		if            (num.mod(new BigInteger("02")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 2 *********************");
+			} else if (num.mod(new BigInteger("03")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 3 *********************");
+			} else if (num.mod(new BigInteger("05")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 5 *********************");
+			} else if (num.mod(new BigInteger("07")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 7 *********************");
 			} else if (num.mod(new BigInteger("11")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 11 *********************");
 			} else if (num.mod(new BigInteger("13")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 13 *********************");
 			} else if (num.mod(new BigInteger("17")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 7 *********************");
@@ -155,36 +143,31 @@ public class Main {
 			} else if (num.mod(new BigInteger("53")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 53 *********************");
 			} else if (num.mod(new BigInteger("59")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 59 *********************");
 			} else {
-				// We are out of tricks. Time to brute-force it
+				// We are out of tricks. Supposedly. Time to brute-force it, mostly
 				boolean checkThisDivisor = true;
 				while (true) {
 					if (checkThisDivisor == true) {
-						lastDigit = divisor.intValue();
-						lastDigit = lastDigit % 10;	// Get the lowest digit
-						// All we have are odd numbers and we only need to check odd numbers that don't end in 5
-						if (lastDigit != 5) {
-							mod = num.mod(divisor);
-							if (mod.compareTo(BigInteger.ZERO) == 0) {
-								System.out.println("******************* Divisor found *********************");
-								break;
-							}
-							//System.out.println("i = " + i + " mod = " + mod.toString());
-							if (counter % 100_000_000 == 0) {
-								t2 = System.currentTimeMillis();
-								System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
-								//System.out.println(divisor.toString());
-								System.out.print(" Divisor has " + divisor.toString().length() + " digits.");
-								System.out.println(new DecimalFormat(" Elapsed time = #,#######.0").format(((double)((t2 - startTime))/1000)/60) + " minutes.");
-								counter = 0;
-								t1 = t2;
-							}
-							counter++;
+						mod = num.mod(divisor);
+						if (mod.compareTo(BigInteger.ZERO) == 0) {System.out.println("******************* Divisor found *********************"); break;}
+						//System.out.println("i = " + i + " mod = " + mod.toString());
+						if (counter % 100_000_000 == 0) {
+							t2 = System.currentTimeMillis();
+							System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.");
+							//System.out.println(divisor.toString());
+							System.out.print(" Divisor has " + divisor.toString().length() + " digits.");
+							System.out.println(new DecimalFormat(" Elapsed time = #,#######.0").format(((double)((t2 - startTime))/1000)/60) + " minutes.");
+							counter = 0;
+							t1 = t2;
 						}
+						counter++;
 					}
 					divisor = divisor.add(bigIntegerTwo);	// Only check the odd numbers
-					counter7 += 2; counter11 += 2; counter13 += 2; counter17 += 2; counter19 += 2; counter23 += 2; counter29 += 2;
+					counter03 += 2; counter05 += 2;
+					counter07 += 2; counter11 += 2; counter13 += 2; counter17 += 2; counter19 += 2; counter23 += 2; counter29 += 2;
+					counter31 += 2; counter37 += 2; counter41 += 2; counter43 += 2; counter47 += 2; counter53 += 2; counter59 += 2;
 					checkThisDivisor = true;
-					if (counter7 % 7 == 0) {counter7 = 0; checkThisDivisor = false;
+					if         (counter03 % 03 == 0) {counter03 = 0; checkThisDivisor = false;
+					} else 	if (counter05 % 11 == 0) {counter05 = 0; checkThisDivisor = false;
 					} else 	if (counter11 % 11 == 0) {counter11 = 0; checkThisDivisor = false;
 					} else 	if (counter13 % 13 == 0) {counter13 = 0; checkThisDivisor = false;
 					} else 	if (counter17 % 17 == 0) {counter17 = 0; checkThisDivisor = false;
@@ -201,11 +184,11 @@ public class Main {
 					}
 					// Are we done?
 					// ToDo - we could check this every other iteration to speed it up.
-					if (divisor.compareTo(myLKP.getMyNum_SquareRoot()) > 0) {System.out.println("No divisor found, number is prime"); break;}
+					if (divisor.compareTo(num_SquareRoot) > 0) {System.out.println("No divisor found, number is prime"); break;}
 				}
 			}	
 			endTime = System.currentTimeMillis();
 			System.out.println("Total execution time to run the test loop: " + new DecimalFormat("#,###.0000").format(((double)((endTime - startTime))/1000)/60) + " minutes." );
 		}
 	}
-}
+
