@@ -171,6 +171,7 @@ public class Main {
 				BigInteger prevDivisor = new BigInteger(divisor.toByteArray());
 				BigInteger bigInteger100 = new BigInteger("100");
 				int counterIncrement = 100_000_000;
+				boolean checkLimit = true;
 				while (true) {
 					if (checkThisDivisor == true) {
 						//System.out.println(divisor.toString());
@@ -200,7 +201,7 @@ public class Main {
 					checkCounter03 += 2; checkCounter05 += 2; checkCounter07 += 2; checkCounter11 += 2; checkCounter13 += 2; checkCounter17 += 2;
 					checkCounter19 += 2; checkCounter23 += 2; checkCounter29 += 2; checkCounter31 += 2; checkCounter37 += 2; checkCounter41 += 2;
 					checkCounter43 += 2; checkCounter47 += 2; checkCounter53 += 2; checkCounter59 += 2; checkCounter61 += 2; checkCounter67 += 2;
-					checkCounter71 += 2; checkCounter73 += 2; checkCounter79 += 2; checkCounter83 += 2; checkCounter89 += 2; checkCounter97 += 2; 
+//					checkCounter71 += 2; checkCounter73 += 2; checkCounter79 += 2; checkCounter83 += 2; checkCounter89 += 2; checkCounter97 += 2; 
 					
 					checkThisDivisor = true;
 					
@@ -226,15 +227,21 @@ public class Main {
 					if (checkCounter61 % 61 == 0)  {checkThisDivisor = false; checkCounter61 = 0;}
 					if (checkCounter67 % 67 == 0)  {checkThisDivisor = false; checkCounter67 = 0;}
 					
+					/* Diminishing returns start about here...
 					if (checkCounter71 % 71 == 0)  {checkThisDivisor = false; checkCounter71 = 0;}
 					if (checkCounter73 % 73 == 0)  {checkThisDivisor = false; checkCounter73 = 0;}
 					if (checkCounter79 % 79 == 0)  {checkThisDivisor = false; checkCounter79 = 0;}
 					if (checkCounter83 % 83 == 0)  {checkThisDivisor = false; checkCounter83 = 0;}
 					if (checkCounter89 % 89 == 0)  {checkThisDivisor = false; checkCounter89 = 0;}
 					if (checkCounter97 % 97 == 0)  {checkThisDivisor = false; checkCounter97 = 0;}
+					*/
 					// Are we done?
-					// ToDo - we could check this every other iteration to speed it up.
-					if (divisor.compareTo(num_SquareRoot) > 0) {System.out.println("No divisor found, number is prime"); break;}
+					
+					// ToDo - we could check this every other iteration to speed it up. More work needs to be done on this
+					if (checkLimit == true) {
+						if (divisor.compareTo(num_SquareRoot) > 0) {System.out.println("No divisor found, number is prime"); break;}
+					}
+					checkLimit = !checkLimit;
 				}
 			}
 			endTime = System.currentTimeMillis();
