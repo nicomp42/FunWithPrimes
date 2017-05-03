@@ -3,8 +3,8 @@
  * nicholdw@ucmail.uc.edu
  * Some test primes: https://primes.utm.edu/lists/small/small.html
  * 
- * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 
- * 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 
+ * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 
+ * 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 
  * 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199
  * 
  */
@@ -124,7 +124,7 @@ public class Main {
 		System.out.println("Result of comparison = " + comparison);
 */
 		BigInteger mod;
-		int startingPrime = 71;		// Where the divisor will start. 
+		int startingPrime = 101;		// Where the divisor will start. Needs to be a prime number.
 		BigInteger divisor = new BigInteger(String.valueOf(startingPrime));
 		startTime = System.currentTimeMillis();
 		long t1, t2;
@@ -136,6 +136,7 @@ public class Main {
 		int checkCounter03 = startingPrime, checkCounter05 = startingPrime, checkCounter07 = startingPrime, checkCounter11 = startingPrime, checkCounter13 = startingPrime, checkCounter17 = startingPrime;
 		int checkCounter19 = startingPrime, checkCounter23 = startingPrime, checkCounter29 = startingPrime, checkCounter31 = startingPrime, checkCounter37 = startingPrime, checkCounter41 = startingPrime;
 		int checkCounter43 = startingPrime, checkCounter47 = startingPrime, checkCounter53 = startingPrime, checkCounter59 = startingPrime, checkCounter61 = startingPrime, checkCounter67 = startingPrime;
+		int checkCounter71 = startingPrime, checkCounter73 = startingPrime, checkCounter79 = startingPrime, checkCounter83 = startingPrime, checkCounter89 = startingPrime, checkCounter97 = startingPrime;
 		
 		// Check the first few primes. Make sure this stops at the last prime before the value of startingPrime
 		if            (num.mod(new BigInteger("02")).compareTo(BigInteger.ZERO) == 0) { System.out.println("******************* number is divisible by 2 *********************");
@@ -157,6 +158,12 @@ public class Main {
 			} else if (num.mod(new BigInteger("59")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 59 *********************");
 			} else if (num.mod(new BigInteger("61")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 61 *********************");
 			} else if (num.mod(new BigInteger("67")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 67 *********************");
+			} else if (num.mod(new BigInteger("71")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 71 *********************");
+			} else if (num.mod(new BigInteger("73")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 73 *********************");
+			} else if (num.mod(new BigInteger("79")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 79 *********************");
+			} else if (num.mod(new BigInteger("83")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 83 *********************");
+			} else if (num.mod(new BigInteger("89")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 89 *********************");
+			} else if (num.mod(new BigInteger("97")).compareTo(BigInteger.ZERO) == 0) {	System.out.println("******************* number is divisible by 97 *********************");
 			} else {
 				// We are out of tricks. Supposedly. Time to brute-force it, mostly
 				boolean checkThisDivisor = true;
@@ -193,6 +200,7 @@ public class Main {
 					checkCounter03 += 2; checkCounter05 += 2; checkCounter07 += 2; checkCounter11 += 2; checkCounter13 += 2; checkCounter17 += 2;
 					checkCounter19 += 2; checkCounter23 += 2; checkCounter29 += 2; checkCounter31 += 2; checkCounter37 += 2; checkCounter41 += 2;
 					checkCounter43 += 2; checkCounter47 += 2; checkCounter53 += 2; checkCounter59 += 2; checkCounter61 += 2; checkCounter67 += 2;
+					checkCounter71 += 2; checkCounter73 += 2; checkCounter79 += 2; checkCounter83 += 2; checkCounter89 += 2; checkCounter97 += 2; 
 					
 					checkThisDivisor = true;
 					
@@ -218,6 +226,12 @@ public class Main {
 					if (checkCounter61 % 61 == 0)  {checkThisDivisor = false; checkCounter61 = 0;}
 					if (checkCounter67 % 67 == 0)  {checkThisDivisor = false; checkCounter67 = 0;}
 					
+					if (checkCounter71 % 71 == 0)  {checkThisDivisor = false; checkCounter71 = 0;}
+					if (checkCounter73 % 73 == 0)  {checkThisDivisor = false; checkCounter73 = 0;}
+					if (checkCounter79 % 79 == 0)  {checkThisDivisor = false; checkCounter79 = 0;}
+					if (checkCounter83 % 83 == 0)  {checkThisDivisor = false; checkCounter83 = 0;}
+					if (checkCounter89 % 89 == 0)  {checkThisDivisor = false; checkCounter89 = 0;}
+					if (checkCounter97 % 97 == 0)  {checkThisDivisor = false; checkCounter97 = 0;}
 					// Are we done?
 					// ToDo - we could check this every other iteration to speed it up.
 					if (divisor.compareTo(num_SquareRoot) > 0) {System.out.println("No divisor found, number is prime"); break;}
