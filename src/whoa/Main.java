@@ -18,9 +18,9 @@ import config.Config;
 
 public class Main {
 
-	private static String testFileName = "M74207281";
+//	private static String testFileName = "M74207281";
 //	private static String testFileName = "100DigitNOTPrime";
-//	private static String testFileName = "100DigitPrime";
+	private static String testFileName = "100DigitPrime";
 //	private static String testFileName = "10DigitPrime";
 //	private static String testFileName = "10DigitNOTPrime";
 //	private static String testFileName = "20DigitPrime";
@@ -126,7 +126,6 @@ public class Main {
 		BigInteger mod;
 		int startingPrime = 71;		// Where the divisor will start. 
 		BigInteger divisor = new BigInteger(String.valueOf(startingPrime));
-		System.out.println("Starting test loop...");
 		startTime = System.currentTimeMillis();
 		long t1, t2;
 		t1 = System.currentTimeMillis();
@@ -161,6 +160,10 @@ public class Main {
 			} else {
 				// We are out of tricks. Supposedly. Time to brute-force it, mostly
 				boolean checkThisDivisor = true;
+				System.out.println("Starting test loop...");
+				BigInteger prevDivisor = new BigInteger(divisor.toByteArray());
+				BigInteger bigInteger100 = new BigInteger("100");
+				int counterIncrement = 100_000_000;
 				while (true) {
 					if (checkThisDivisor == true) {
 						//System.out.println(divisor.toString());
@@ -168,14 +171,21 @@ public class Main {
 						if (mod.compareTo(BigInteger.ZERO) == 0) {System.out.println("******************* Divisor found *********************"); System.out.println(divisor.toString()); break;}
 						//System.out.println("i = " + i + " mod = " + mod.toString());
 
-						if (counter % 1_000 == 0) {
+//						if (counter % 1_000 == 0) {			// Use this for the 20 million digit number
+						if (counter % counterIncrement == 0) {		// Use this for smaller numbers, such as 20
 							t2 = System.currentTimeMillis();
 							System.out.print(new DecimalFormat("#,#######.0000").format(((double)((t2 - t1))/1000)/60) + " minutes.   ");
 							System.out.print(" Divisor has " + divisor.toString().length() + " digits.");
 							System.out.print(new DecimalFormat(" Elapsed time = #,#######.0").format(((double)((t2 - startTime))/1000)/60) + " minutes. divisor = ");
-							System.out.println(divisor.toString());	
+							System.out.print(divisor.toString() + ". ");	
+							try {
+							System.out.print(new BigInteger(((Integer)counterIncrement).toString()) + " divisors were tested out of " + divisor.subtract(prevDivisor).toString() + 
+									           " possible values (" + new BigInteger(((Integer)counterIncrement).toString()).multiply(bigInteger100).divide(divisor.subtract(prevDivisor)) + "%)" );
+							} catch (Exception ex) {}
+							System.out.println();
 							counter = 0;
 							t1 = t2;
+							prevDivisor = new BigInteger(divisor.toByteArray());
 						}
 						counter++;
 					}
@@ -207,26 +217,7 @@ public class Main {
 					if (checkCounter59 % 59 == 0)  {checkThisDivisor = false; checkCounter59 = 0;}
 					if (checkCounter61 % 61 == 0)  {checkThisDivisor = false; checkCounter61 = 0;}
 					if (checkCounter67 % 67 == 0)  {checkThisDivisor = false; checkCounter67 = 0;}
-					/*
 					
-					else 	if (checkCounter % 5 == 0)  {checkThisDivisor = false;
-					} else 	if (checkCounter % 7 == 0)  {checkThisDivisor = false;
-					} else 	if (checkCounter % 11 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 13 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 17 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 19 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 23 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 29 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 31 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 37 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 41 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 43 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 47 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 53 == 0) {checkThisDivisor = false;
-					} else 	if (checkCounter % 59 == 0) {
-						checkThisDivisor = false; checkCounter = 59; //System.out.println("found a divisor that is a factor of 59: checkCounter = " + checkCounter );
-					}
-					*/
 					// Are we done?
 					// ToDo - we could check this every other iteration to speed it up.
 					if (divisor.compareTo(num_SquareRoot) > 0) {System.out.println("No divisor found, number is prime"); break;}
