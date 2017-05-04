@@ -1,0 +1,33 @@
+Test data will be taken from 20DigitPrime...
+LKP.readSerializedOurBigIntFromDiskFile: java.math.BigInteger cannot be cast to whoa.OurBigInt
+Reading from file 20DigitPrime.txt...
+Done reading from file 20DigitPrime.txt...
+Total execution time to load from text file: .0040 seconds.
+StringBuilder object is 20 bytes.
+Converting to OurBigInt...
+Total execution time to convert to OurBigInt: .0000 seconds.
+Length of number = 20
+Total execution time to serialize OurBigInt: .0003 minutes.
+Total execution time to read serialized OurBigInt: .0003 minutes.
+Checking length of the OurBigInt we just read...
+Length of number = 20
+Total execution time to check length of serialized OurBigInt that we just read: .0000 minutes.
+The file '20DigitPrime_SquareRoot.ser' does NOT exist. We will create it!
+Computing and serializing square root of the OurBigInt...
+Total execution time to compute square root: .0000 minutes.
+Length of square root = 10
+Checking length of the OurBigInt we just read...
+Length of number = 10
+Total execution time to check length of serialized OurBigInt square root that we just read: .0000 minutes.
+Starting test loop...
+.0000 minutes.    Divisor has 3 digits. Elapsed time = .0 minutes. divisor = 101. 
+.7998 minutes.    Divisor has 9 digits. Elapsed time = .8 minutes. divisor = 771459607. 100000000 divisors were tested out of 771459506 possible values (12%)
+.8167 minutes.    Divisor has 10 digits. Elapsed time = 1.6 minutes. divisor = 1542926839. 100000000 divisors were tested out of 771467232 possible values (12%)
+.8184 minutes.    Divisor has 10 digits. Elapsed time = 2.4 minutes. divisor = 2314394857. 100000000 divisors were tested out of 771468018 possible values (12%)
+.8256 minutes.    Divisor has 10 digits. Elapsed time = 3.3 minutes. divisor = 3085862639. 100000000 divisors were tested out of 771467782 possible values (12%)
+.8302 minutes.    Divisor has 10 digits. Elapsed time = 4.1 minutes. divisor = 3857330041. 100000000 divisors were tested out of 771467402 possible values (12%)
+.9024 minutes.    Divisor has 10 digits. Elapsed time = 5.0 minutes. divisor = 4628797093. 100000000 divisors were tested out of 771467052 possible values (12%)
+.9583 minutes.    Divisor has 10 digits. Elapsed time = 6.0 minutes. divisor = 5400264031. 100000000 divisors were tested out of 771466938 possible values (12%)
+.9594 minutes.    Divisor has 10 digits. Elapsed time = 6.9 minutes. divisor = 6171731081. 100000000 divisors were tested out of 771467050 possible values (12%)
+No divisor found, number is prime
+Total execution time to run the test loop: 7.8698 minutes.
