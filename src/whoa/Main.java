@@ -29,8 +29,22 @@ public class Main {
 
 	public static void main(String[] args) {
 		//testSquareRootMethod();
-		testPrimeChecker(true);
+		//testPrimeChecker(true);
+		justCount();
 	}
+	/**
+	 * Run a simple test to see how long it takes to count up to a big number using Big Integer data types
+	 */
+	private static void justCount() {
+		LKP myLKP = new LKP("20DigitPrime");
+		try {
+			myLKP.readSerializedOurBigIntFromDiskFile();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		myLKP.justCount(myLKP.getNum());
+	}
+	
 	/**
 	 * Run a prime-ness test on a BigInt
 	 * @param checkLength True if the method should compute and print the length of the OurBigInt objects read from serialized files. 
