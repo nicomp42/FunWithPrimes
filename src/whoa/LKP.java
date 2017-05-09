@@ -215,25 +215,32 @@ public class LKP {
 	public void setMyNum_SquareRoot(OurBigInt myNum_SquareRoot) {
 		this.myNum_SquareRoot = myNum_SquareRoot;
 	}
-	
+
 	/**
 	 * Just count from 1 to num
 	 * @param num The upper limit of the counting
 	 */
 	public void justCount(OurBigInt limit) {
-		System.out.println("LKP.justCount(): the limit is " + limit.toString().length() + " digits.");
+		System.out.println("LKP.justCount(): the number is " + limit.toString().length() + " digits long.");
 		OurBigInt num = new OurBigInt("1");
-		
+
 		int counter = 1;
 		long startTime = System.currentTimeMillis();
-
+		long intervalStop, intervalStart = startTime;
 		System.out.println("LKP.justCount(): Counting...");
 		while (true) {
 			num.add(1);
+			counter++;
 			if (num.compareTo(limit) == 0) {break;} // Are we done?
+			if (counter < 0) {
+				intervalStop = System.currentTimeMillis();
+				counter = 0;
+				System.out.print(num.toString().length() + " digits : " + num.toString());
+				System.out.println("   " + ((double)((intervalStop - intervalStart))/1000)/60 + " minutes." );
+				intervalStart = intervalStop;	
+			}
 		}
 		long endTime = System.currentTimeMillis();
 		System.out.println("LKP.justCount(): Total execution time to count: " + ((double)((endTime - startTime))/1000)/60 + " minutes." );
-	}	
-	
+	}
 }
