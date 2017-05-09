@@ -226,9 +226,9 @@ public class LKP {
 		 * Given a 20 digit number: 10,000,000,000,000,000,000 / 2^31 = 4.656612873077392578125 × 10^9
 		 * Multiply that by .14 = 6.519258022308349609375 × 10^8 minutes = 181090 hours. 
 		 * 
-		 * Paste this formula into Wolframalpha.com : 10,000,000,000,000,000,000 / 2^31 * .14 / 3600
+		 * Paste this formula into Wolframalpha.com : 	
 		 * 
-		 * Given 720 hours in a month: we would need 181090 / 720 = 252 computers to finish this in a month.
+		 * Given 720 hours in a month: we would need 181090 / 720 = 252 computers to finish this simple counting operation in one month.
 		 */
 		System.out.println("LKP.justCount(): the number is " + limit.toString().length() + " digits long.");
 		OurBigInt num = new OurBigInt("1");
