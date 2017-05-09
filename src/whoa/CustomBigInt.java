@@ -16,6 +16,8 @@ package whoa;
 
 import java.util.Arrays;
 
+import config.Debug;
+
 public class CustomBigInt {
 	
 	private int length;
@@ -35,7 +37,9 @@ public class CustomBigInt {
 	public void setLength(int length) {
 		this.length = length;
 	}
-
+	/**
+	 * This method counts to 99999 if length is 5, so it's closer to a count to (length-1) digits than length digits
+	 */
 	public void justCount() {
 		// This is quite a bit faster than the other Big Integer counting tests.
 		// It works out to about .06 minutes per iteration of 2^31 counts, even with 22 million digits.
@@ -50,17 +54,19 @@ public class CustomBigInt {
 		boolean keepGoing = true;
 		try {
 			while (keepGoing == true) {
-				counter++;
-				if (counter < 0) {
-					intervalStop = System.currentTimeMillis();
-					counter = 0;
-					if (verbose) {
-						System.out.print(" digits : " + Arrays.toString(digits).replaceAll(", ", ""));
+			    if (Debug.ON) {		// Conditional Compilation!
+					counter++;
+					if (counter < 0) {
+						intervalStop = System.currentTimeMillis();
+						counter = 0;
+						if (verbose) {
+							System.out.print(" digits : " + Arrays.toString(digits).replaceAll(", ", ""));
+						}
+						digitsUsed = countDigitsUsed();
+						System.out.println(digitsUsed + " digits used, " + ((double)((intervalStop - intervalStart))/1000)/60 + " minutes." );
+						intervalStart = intervalStop;	
 					}
-					digitsUsed = countDigitsUsed();
-					System.out.println(digitsUsed + " digits used, " + ((double)((intervalStop - intervalStart))/1000)/60 + " minutes." );
-					intervalStart = intervalStop;	
-				}
+			    }
 				i = length - 1;
 				while (true) {	
 					tmp = digits[i];
