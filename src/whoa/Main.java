@@ -35,7 +35,7 @@ public class Main {
 	}
 	private static void justCountWIthOurCustimeBigInt() {
 //		CustomBigInt cbi = new CustomBigInt(22_000_000, false);		// 22 million digits
-		CustomBigInt cbi = new CustomBigInt(12, false);
+		CustomBigInt cbi = new CustomBigInt(11, false);
 		cbi.justCount();
 	}
 	/**

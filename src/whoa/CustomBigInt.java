@@ -5,8 +5,9 @@
  * 
  * 
  * 
- * 
- * 
+ * Test runs: 
+		CustomBigInt.justCount(): Counting with 12 digits...
+		LKP.justCount(): Total execution time to count: 26.885083333333334 minutes.
  */
 
 
@@ -86,8 +87,8 @@ public class CustomBigInt {
 			keepGoing = false;
 		}
 		long endTime = System.currentTimeMillis();
-		System.out.println("LKP.justCount(): Total execution time to count: " + ((double)((endTime - startTime))/1000)/60 + " minutes." );
-		
+		System.out.println("CustomBigInt.justCount(): Total execution time to count: " + ((double)((endTime - startTime))/1000)/60 + " minutes." );
+		if (verbose) {System.out.println("CustomBigInt.justCount(): final number = " + Arrays.toString(digits).replaceAll(", ", ""));}
 	}
 	/**
 	 * For development only. Do not use this during production runs.
