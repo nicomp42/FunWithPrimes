@@ -31,12 +31,12 @@ public class Main {
 		//testSquareRootMethod();
 		//testPrimeChecker(true);
 		//justCount();
-		justCountWIthOurCustimeBigInt();
+		justCountWithOurCustomBigInt();
 	}
-	private static void justCountWIthOurCustimeBigInt() {
+	private static void justCountWithOurCustomBigInt() {
 //		CustomBigInt cbi = new CustomBigInt(22_000_000, false);		// 22 million digits
-		CustomBigInt cbi = new CustomBigInt(11, false);
-		cbi.justCount();
+		CustomBigInt cbi = new CustomBigInt(900_000, false);
+		cbi.justCountVersion02();	// Make sure length is a multiple of 12
 	}
 	/**
 	 * Run a simple test to see how long it takes to count up to a big number using Big Integer data types
